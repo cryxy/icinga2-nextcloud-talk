@@ -4,8 +4,10 @@ set -e
 
 TYPE="$1"
 
-#export TELEGRAM_BOT_TOKEN="12345678:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-#export TELEGRAM_CHAT_ID="12366611"
+#export TALK_HOST="y.de"
+#export TALK_USER="x@y.de"
+#export TALK_TOKEN="12345678:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+#export TALK_CHAT_ID="12366611"
 
 require_env() {
   if [ -z ${!1} ]; then
@@ -15,8 +17,10 @@ require_env() {
   export "$1"
 }
 
-require_env TELEGRAM_BOT_TOKEN
-require_env TELEGRAM_CHAT_ID
+require_env TALK_HOST
+require_env TALK_USER
+require_env TALK_TOKEN
+require_env TALK_CHAT_ID
 
 export ICINGAWEB2_URL="${ICINGAWEB2_URL:-https://icinga.example.com/icingaweb2}"
 

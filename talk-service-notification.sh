@@ -20,9 +20,4 @@ Comment: ($NOTIFICATIONAUTHORNAME) $NOTIFICATIONCOMMENT
 "
 fi
 
-/usr/bin/curl --silent --output /dev/null \
-    --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
-    --data-urlencode "text=${template}" \
-    --data-urlencode "parse_mode=HTML" \
-    --data-urlencode "disable_web_page_preview=true" \
-    "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage"
+curl -u "${TALK_USER}:${TALK_TOKEN}" -X POST "https://${TALK_HOST}/ocs/v2.php/apps/spreed/api/v1/chat/${TALK_CHAT_ID}" -H 'OCS-APIRequest: true' -d "{\"message\":\"$template\"}" -H 'Content-Type: application/json'
