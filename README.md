@@ -1,34 +1,25 @@
-Icinga 2 Notifications to Telegram
+Icinga 2 Notifications to Nextcloud Talk
 ==================================
 
 The repository shows how to configure Icinga 2 to send notifications via
-[Telegram](https://www.telegram.org).
+[Nextcloud talk](https://nextcloud.com/de/talk/).
 
 These can be send either to:
 * Group Chats
 * Personal User Chat
 
 Please note that **only** the transport is encrypted, but not the actual
-messages. (They can be seen be Telegram employees).
-
-Start by [creating a new bot](https://core.telegram.org/bots#create-a-new-bot).
-
-When you first message the bot with `/start` or add it to a group, you can get
-updates via the Telegram API, to get the Chat ID you want to sent messages to.
-
-    curl --silent "https://api.telegram.org/bot${TOKEN}/getUpdates"
-
-Use this chat ID to add it to a user.
+messages.
 
 Checkout the example files to configure Icinga 2:
 
-* [telegram-host-notification.sh](telegram-host-notification.sh)
-* [telegram-service-notification.sh](telegram-service-notification.sh)
+* [talk-host-notification.sh](talk-host-notification.sh)
+* [talk-service-notification.sh](talk-service-notification.sh)
 * [icinga2-example.conf](icinga2-example.conf)
 
 ## Screenshot
 
-![Screenshot](screenshot.png)
+![Screenshot](screenshot.jpg)
 
 ## Attribution
 

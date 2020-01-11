@@ -12,6 +12,11 @@ require_env() {
   export "$1"
 }
 
+export TALK_HOST="y.de"
+export TALK_USER="x@y.de"
+export TALK_TOKEN="1234"
+export TALK_CHAT_ID="jkjlkjl"
+
 require_env TALK_HOST
 require_env TALK_USER
 require_env TALK_TOKEN
@@ -26,7 +31,7 @@ elif [ "$TYPE" = host ]; then
     export HOSTSTATE=DOWN
     export HOSTOUTPUT="Test host is not really reporting a problem!"
 
-    script=./telegram-host-notification.sh
+    script=./talk-host-notification.sh
 elif [ "$TYPE" = service ]; then
     export SERVICEDESC=testservice
     export SERVICESTATE=CRITICAL
@@ -46,7 +51,7 @@ export HOSTDISPLAYNAME="testhost (example)"
 export HOSTADDRESS=1.1.1.1
 export LONGDATETIME="$(date)"
 export NOTIFICATIONAUTHORNAME=icingaadmin
-#export NOTIFICATIONCOMMENT="No comment"
+export NOTIFICATIONCOMMENT="No comment"
 
 bash -x "$script"
 
