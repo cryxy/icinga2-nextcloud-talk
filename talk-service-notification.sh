@@ -4,20 +4,17 @@ if [ -n "$ICINGAWEB2_URL" ]; then
     SERVICEDISPLAYNAME="<a href=\"$ICINGAWEB2_URL/monitoring/service/show?host=$HOSTNAME&service=$SERVICEDESC\">$SERVICEDISPLAYNAME</a>"
 fi
 template=$(cat <<TEMPLATE
-<strong>$NOTIFICATIONTYPE</strong> $HOSTDISPLAYNAME - $SERVICEDISPLAYNAME is $SERVICESTATE
-
+$NOTIFICATIONTYPE $HOSTDISPLAYNAME - $SERVICEDISPLAYNAME is $SERVICESTATE
 Address: $HOSTADDRESS
 Date/Time: $LONGDATETIME
-
-<pre>$SERVICEOUTPUT</pre>
+$SERVICEOUTPUT
 TEMPLATE
 )
 
 if [ -n "$NOTIFICATIONCOMMENT" ]; then
   template="$template
-
 Comment: ($NOTIFICATIONAUTHORNAME) $NOTIFICATIONCOMMENT
 "
 fi
 
-curl -u "${TALK_USER}:${TALK_TOKEN}" -X POST "https://${TALK_HOST}/ocs/v2.php/apps/spreed/api/v1/chat/${TALK_CHAT_ID}" -H 'OCS-APIRequest: true' -d "{\"message\":\"$template\"}" -H 'Content-Type: application/json'
+curl -u "${TALK_USER}:${TALK_TOKEN}" -X POST "https://${TALK_HOST}/ocs/v2.php/apps/spreed/api/v1/chat/${TALK_CHAT_ID}" -H 'OCS-APIRequest: true' -H 'Content-Type: application/json' -d "{\"message\":\"$template\"}" 

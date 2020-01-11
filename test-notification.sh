@@ -4,11 +4,6 @@ set -e
 
 TYPE="$1"
 
-#export TALK_HOST="y.de"
-#export TALK_USER="x@y.de"
-#export TALK_TOKEN="12345678:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-#export TALK_CHAT_ID="12366611"
-
 require_env() {
   if [ -z ${!1} ]; then
     echo "$1 must be set in environment!" >&2
@@ -22,7 +17,7 @@ require_env TALK_USER
 require_env TALK_TOKEN
 require_env TALK_CHAT_ID
 
-export ICINGAWEB2_URL="${ICINGAWEB2_URL:-https://icinga.example.com/icingaweb2}"
+# export ICINGAWEB2_URL="${ICINGAWEB2_URL:-https://icinga.example.com/icingaweb2}"
 
 if [ -z "$TYPE" ]; then
     echo "ARG1 must be set as type (host/service)" >&2
@@ -38,7 +33,7 @@ elif [ "$TYPE" = service ]; then
     export SERVICEOUTPUT="Test service is not really reporting a problem!"
     export SERVICEDISPLAYNAME="testservice (example)"
 
-    script=./telegram-service-notification.sh
+    script=./talk-service-notification.sh
 else
     echo "You can only notify host or service!" >&2
     exit 1
@@ -51,7 +46,7 @@ export HOSTDISPLAYNAME="testhost (example)"
 export HOSTADDRESS=1.1.1.1
 export LONGDATETIME="$(date)"
 export NOTIFICATIONAUTHORNAME=icingaadmin
-export NOTIFICATIONCOMMENT="No comment"
+#export NOTIFICATIONCOMMENT="No comment"
 
 bash -x "$script"
 
